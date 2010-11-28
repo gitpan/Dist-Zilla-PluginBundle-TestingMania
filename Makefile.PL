@@ -9,44 +9,47 @@ use ExtUtils::MakeMaker 6.31;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'A bundle to test your dist with every testing plugin conceivable',
-  'AUTHOR' => 'Mike Doherty <doherty@cs.dal.ca>',
+  'ABSTRACT' => 'test your dist with every testing plugin conceivable',
+  'AUTHOR' => 'Mike Doherty <doherty@cpan.org>',
   'BUILD_REQUIRES' => {
-    'File::Find' => '0',
-    'File::Temp' => '0',
-    'Test::More' => '0'
+    'File::Find' => '1.15',
+    'File::Temp' => '0.22',
+    'Test::More' => '0.96'
   },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31'
   },
   'DISTNAME' => 'Dist-Zilla-PluginBundle-TestingMania',
   'EXE_FILES' => [],
-  'LICENSE' => 'gpl',
+  'LICENSE' => 'perl',
   'NAME' => 'Dist::Zilla::PluginBundle::TestingMania',
   'PREREQ_PM' => {
-    'Dist::Zilla::Plugin::ApacheTest' => '0',
-    'Dist::Zilla::Plugin::CheckChangesTests' => '0',
-    'Dist::Zilla::Plugin::CompileTests' => '0',
-    'Dist::Zilla::Plugin::ConsistentVersionTest' => '0',
-    'Dist::Zilla::Plugin::CriticTests' => '0',
-    'Dist::Zilla::Plugin::DistManifestTests' => '0',
-    'Dist::Zilla::Plugin::EOLTests' => '0',
-    'Dist::Zilla::Plugin::HasVersionTests' => '0',
-    'Dist::Zilla::Plugin::KwaliteeTests' => '0',
-    'Dist::Zilla::Plugin::MetaTests' => '0',
-    'Dist::Zilla::Plugin::MinimumVersionTests' => '0',
-    'Dist::Zilla::Plugin::NoTabsTests' => '0',
-    'Dist::Zilla::Plugin::PodCoverageTests' => '0',
-    'Dist::Zilla::Plugin::PodSpellingTests' => '0',
-    'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
-    'Dist::Zilla::Plugin::PortabilityTests' => '0',
-    'Dist::Zilla::Plugin::ProgCriticTests' => '0',
-    'Dist::Zilla::Plugin::SynopsisTests' => '0',
-    'Dist::Zilla::Plugin::UnusedVarsTests' => '0',
-    'Dist::Zilla::Role::PluginBundle::Easy' => '0',
-    'Moose' => '0'
+    'Dist::Zilla::Plugin::ApacheTest' => '0.01',
+    'Dist::Zilla::Plugin::CheckChangesTests' => '1.100900',
+    'Dist::Zilla::Plugin::CompileTests' => '1.103030',
+    'Dist::Zilla::Plugin::ConsistentVersionTest' => '0.02',
+    'Dist::Zilla::Plugin::CriticTests' => '1.102280',
+    'Dist::Zilla::Plugin::DistManifestTests' => '1.101420',
+    'Dist::Zilla::Plugin::EOLTests' => '0.02',
+    'Dist::Zilla::Plugin::HasVersionTests' => '1.101420',
+    'Dist::Zilla::Plugin::KwaliteeTests' => '1.101420',
+    'Dist::Zilla::Plugin::MetaTests' => '4.102345',
+    'Dist::Zilla::Plugin::MinimumVersionTests' => '1.101421',
+    'Dist::Zilla::Plugin::NoTabsTests' => '0.01',
+    'Dist::Zilla::Plugin::PodCoverageTests' => '4.102345',
+    'Dist::Zilla::Plugin::PodSpellingTests' => '1.101420',
+    'Dist::Zilla::Plugin::PodSyntaxTests' => '4.102345',
+    'Dist::Zilla::Plugin::PortabilityTests' => '1.101420',
+    'Dist::Zilla::Plugin::ProgCriticTests' => '1.102520',
+    'Dist::Zilla::Plugin::SynopsisTests' => '1.101420',
+    'Dist::Zilla::Plugin::UnusedVarsTests' => '1.100860',
+    'Dist::Zilla::Role::PluginBundle::Easy' => '4.102345',
+    'Moose' => '1.21',
+    'Pod::Coverage::TrustPod' => '0.092832',
+    'Test::CPAN::Meta' => '0.17',
+    'Test::Perl::Critic' => '1.02'
   },
-  'VERSION' => '0.001',
+  'VERSION' => '0.002',
   'test' => {
     'TESTS' => 't/*.t'
   }

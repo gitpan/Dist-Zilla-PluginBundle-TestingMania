@@ -3,9 +3,9 @@ use strict;
 use warnings;
 package Dist::Zilla::PluginBundle::TestingMania;
 BEGIN {
-  $Dist::Zilla::PluginBundle::TestingMania::VERSION = '0.001';
+  $Dist::Zilla::PluginBundle::TestingMania::VERSION = '0.002';
 }
-# ABSTRACT: A bundle to test your dist with every testing plugin conceivable
+# ABSTRACT: test your dist with every testing plugin conceivable
 
 
 use Moose;
@@ -38,8 +38,8 @@ sub configure {
     my @include = ();
 
     my @skip = $self->payload->{skip} ? split(/, ?/, $self->payload->{skip}) : ();
-    REMOVE: foreach my $plugin (keys %plugins) {
-        next REMOVE if (            # Skip...
+    SKIP: foreach my $plugin (keys %plugins) {
+        next SKIP if (              # Skip...
             $plugin ~~ @skip or     # plugins they asked to skip
             $plugin ~~ @include or  # plugins we already included
             !$plugins{$plugin}      # plugins in the list, but which we don't want to add
@@ -65,13 +65,15 @@ no Moose;
 
 =pod
 
+=encoding utf-8
+
 =head1 NAME
 
-Dist::Zilla::PluginBundle::TestingMania - A bundle to test your dist with every testing plugin conceivable
+Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plugin conceivable
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 DESCRIPTION
 
@@ -221,8 +223,8 @@ The latest version of this module is available from the Comprehensive Perl
 Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
 site near you, or see L<http://search.cpan.org/dist/Dist-Zilla-PluginBundle-TestingMania/>.
 
-The development version lives at L<http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania>
-and may be cloned from L<git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania>.
+The development version lives at L<http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git>
+and may be cloned from L<git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git>.
 Instead of sending patches, please fork this project using the standard
 git and github infrastructure.
 
@@ -235,15 +237,14 @@ L<http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues>.
 
 =head1 AUTHOR
 
-Mike Doherty <doherty@cs.dal.ca>
+Mike Doherty <doherty@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by Mike Doherty.
+This software is copyright (c) 2010 by Mike Doherty.
 
-This is free software, licensed under:
-
-  The GNU General Public License, Version 3, June 2007
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
 

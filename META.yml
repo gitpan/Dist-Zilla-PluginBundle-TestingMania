@@ -3,20 +3,19 @@ abstract: 'test your dist with every testing plugin conceivable'
 author:
   - 'Mike Doherty <doherty@cpan.org>'
 build_requires:
-  File::Find: 1.15
+  File::Find: 0
   File::Temp: 0.22
   Test::More: 0.96
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.102345, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.110240'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Dist-Zilla-PluginBundle-TestingMania
 requires:
-  Dist::Zilla::Plugin::ApacheTest: 0.01
   Dist::Zilla::Plugin::CheckChangesTests: 1.100900
   Dist::Zilla::Plugin::CompileTests: 1.103030
   Dist::Zilla::Plugin::ConsistentVersionTest: 0.02
@@ -25,17 +24,17 @@ requires:
   Dist::Zilla::Plugin::EOLTests: 0.02
   Dist::Zilla::Plugin::HasVersionTests: 1.101420
   Dist::Zilla::Plugin::KwaliteeTests: 1.101420
-  Dist::Zilla::Plugin::MetaTests: 4.102345
+  Dist::Zilla::Plugin::MetaTests: 4.200001
   Dist::Zilla::Plugin::MinimumVersionTests: 1.101421
   Dist::Zilla::Plugin::NoTabsTests: 0.01
-  Dist::Zilla::Plugin::PodCoverageTests: 4.102345
-  Dist::Zilla::Plugin::PodSpellingTests: 1.101420
-  Dist::Zilla::Plugin::PodSyntaxTests: 4.102345
+  Dist::Zilla::Plugin::PodCoverageTests: 4.200001
+  Dist::Zilla::Plugin::PodLinkTests: 1.004000
+  Dist::Zilla::Plugin::PodSyntaxTests: 4.200001
   Dist::Zilla::Plugin::PortabilityTests: 1.101420
   Dist::Zilla::Plugin::ProgCriticTests: 1.102520
   Dist::Zilla::Plugin::SynopsisTests: 1.101420
   Dist::Zilla::Plugin::UnusedVarsTests: 1.100860
-  Dist::Zilla::Role::PluginBundle::Easy: 4.102345
+  Dist::Zilla::Role::PluginBundle::Easy: 4.200001
   Moose: 1.21
   Pod::Coverage::TrustPod: 0.092832
   Test::CPAN::Meta: 0.17
@@ -44,4 +43,4 @@ requires:
 resources:
   bugtracker: http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: 0.002
+version: 0.003

@@ -3,7 +3,7 @@ use strict;
 use warnings;
 package Dist::Zilla::PluginBundle::TestingMania;
 BEGIN {
-  $Dist::Zilla::PluginBundle::TestingMania::VERSION = '0.003';
+  $Dist::Zilla::PluginBundle::TestingMania::VERSION = '0.004';
 }
 # ABSTRACT: test your dist with every testing plugin conceivable
 
@@ -27,7 +27,7 @@ sub configure {
         MinimumVersionTests     => 1,
         NoTabsTests             => 1,
         PodCoverageTests        => 1,
-        PodLinkTests            => 1,
+        # PodLinkTests            => 1, # Too broken to include
         PodSyntaxTests          => 1,
         PortabilityTests        => 1,
         ProgCriticTests         => 0, # Quite personal
@@ -56,12 +56,13 @@ sub configure {
 }
 
 __PACKAGE__->meta->make_immutable();
+
 no Moose;
 
 1;
 
 
-
+__END__
 =pod
 
 =encoding utf-8
@@ -72,7 +73,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 DESCRIPTION
 
@@ -157,12 +158,17 @@ L<Dist::Zilla::Plugin::PodCoverageTests>, which checks that you have Pod
 documentation for the things you should have it for. See L<Test::Pod::Coverage>
 for what that means.
 
+=begin hide
+
 =item *
 
 L<Dist::Zilla::Plugin::PodLinkTests>, which tests links in your Pod for invalid
 links, or links which return a 404 (Not Found) error when you release your
 dist. Note that smokers won't check for 404s to save hammering the network.
 See L<Test::Pod::LinkCheck> and L<Test::Pod::No404s> for details.
+
+
+=end hide
 
 =item *
 
@@ -223,6 +229,11 @@ and may be cloned from L<git://github.com/doherty/Dist-Zilla-PluginBundle-Testin
 Instead of sending patches, please fork this project using the standard
 git and github infrastructure.
 
+=head1 SOURCE
+
+The development version is on github at L<http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania>
+and may be cloned from L<git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git>
+
 =head1 BUGS AND LIMITATIONS
 
 No bugs have been reported.
@@ -242,7 +253,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
 

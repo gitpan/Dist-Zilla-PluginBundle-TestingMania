@@ -9,7 +9,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.110240'
+generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110420'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -24,23 +24,22 @@ requires:
   Dist::Zilla::Plugin::EOLTests: 0.02
   Dist::Zilla::Plugin::HasVersionTests: 1.101420
   Dist::Zilla::Plugin::KwaliteeTests: 1.101420
-  Dist::Zilla::Plugin::MetaTests: 4.200001
+  Dist::Zilla::Plugin::MetaTests: 4.200004
   Dist::Zilla::Plugin::MinimumVersionTests: 1.101421
   Dist::Zilla::Plugin::NoTabsTests: 0.01
-  Dist::Zilla::Plugin::PodCoverageTests: 4.200001
-  Dist::Zilla::Plugin::PodLinkTests: 1.004000
-  Dist::Zilla::Plugin::PodSyntaxTests: 4.200001
+  Dist::Zilla::Plugin::PodCoverageTests: 4.200004
+  Dist::Zilla::Plugin::PodSyntaxTests: 4.200004
   Dist::Zilla::Plugin::PortabilityTests: 1.101420
   Dist::Zilla::Plugin::ProgCriticTests: 1.102520
   Dist::Zilla::Plugin::SynopsisTests: 1.101420
   Dist::Zilla::Plugin::UnusedVarsTests: 1.100860
-  Dist::Zilla::Role::PluginBundle::Easy: 4.200001
-  Moose: 1.21
+  Dist::Zilla::Role::PluginBundle::Easy: 4.200004
+  Moose: 1.23
   Pod::Coverage::TrustPod: 0.092832
-  Test::CPAN::Meta: 0.17
+  Test::CPAN::Meta: 0.18
   Test::Perl::Critic: 1.02
   perl: 5.0100
 resources:
   bugtracker: http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: 0.003
+version: 0.004

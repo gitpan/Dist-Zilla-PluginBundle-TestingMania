@@ -8,6 +8,7 @@ lib/Dist/Zilla/PluginBundle/TestingMania.pm
 t/00-compile.t
 t/00-load.t
 xt/author/critic.t
+xt/release/cpan-changes.t
 xt/release/dist-manifest.t
 xt/release/distmeta.t
 xt/release/eol.t
@@ -16,8 +17,6 @@ xt/release/kwalitee.t
 xt/release/minimum-version.t
 xt/release/no-tabs.t
 xt/release/pod-coverage.t
-xt/release/pod-linkcheck.t
-xt/release/pod-no404s.t
 xt/release/pod-syntax.t
 xt/release/portability.t
 xt/release/synopsis.t

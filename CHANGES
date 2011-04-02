@@ -1,5 +1,8 @@
 Changelog for Dist::Zilla::PluginBundle::TestingMania
 
+0.005     2011-04-02
+ * Added ChangesTests
+
 0.004     2011-02-15
  * Removed PodLinkTests; the dependencies are too immature
 
@@ -13,5 +16,5 @@ Changelog for Dist::Zilla::PluginBundle::TestingMania
  * Flesh out the chain of dependencies to get full functionality
  * Use Perl_5 license
 
-0.001
+0.001     2010-10-18
  * Initial version

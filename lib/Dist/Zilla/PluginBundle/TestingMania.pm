@@ -1,11 +1,9 @@
-use 5.0100; # We use the smart match operator
+package Dist::Zilla::PluginBundle::TestingMania;
+# ABSTRACT: test your dist with every testing plugin conceivable
 use strict;
 use warnings;
-package Dist::Zilla::PluginBundle::TestingMania;
-BEGIN {
-  $Dist::Zilla::PluginBundle::TestingMania::VERSION = '0.004';
-}
-# ABSTRACT: test your dist with every testing plugin conceivable
+use 5.0100; # We use the smart match operator
+our $VERSION = '0.005'; # VERSION
 
 
 use Moose;
@@ -15,6 +13,7 @@ sub configure {
     my $self = shift;
 
     my %plugins = (
+        ChangesTests            => 1,
         CheckChangesTests       => 0, # Finnicky and annoying
         CompileTests            => 1,
         ConsistentVersionTest   => 0, # Finnicky and annoying
@@ -43,6 +42,11 @@ sub configure {
             $plugin ~~ @include or  # plugins we already included
             !$plugins{$plugin}      # plugins in the list, but which we don't want to add
         );
+        if ($plugin eq 'ChangesTests') {
+            push(@include, [ $plugin => { changelog => $self->payload->{changelog} } ])
+                unless $plugin ~~ @include or $plugin ~~ @skip;
+            next SKIP;
+        }
         push(@include, $plugin);
     }
 
@@ -59,8 +63,6 @@ __PACKAGE__->meta->make_immutable();
 
 no Moose;
 
-1;
-
 
 __END__
 =pod
@@ -73,7 +75,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 DESCRIPTION
 
@@ -196,6 +198,11 @@ from your SYNOPSIS section. See L<Test::Synopsis> for details and limitations.
 
 L<Dist::Zilla::Plugin::UnusedVarsTests>, which checks your dist for unused
 variables. See L<Test::Vars> for details.
+
+=item *
+
+L<Dist::Zilla::Plugin::ChangesTests>, which checks your changelog for conformance
+with L<CPAN::Changes::Spec>. See L<Test::CPAN::Changes> for details.
 
 =back
 

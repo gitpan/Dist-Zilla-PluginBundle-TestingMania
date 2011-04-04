@@ -3,7 +3,7 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.0100; # We use the smart match operator
-our $VERSION = '0.005'; # VERSION
+our $VERSION = '0.006'; # VERSION
 
 
 use Moose;
@@ -43,7 +43,7 @@ sub configure {
             !$plugins{$plugin}      # plugins in the list, but which we don't want to add
         );
         if ($plugin eq 'ChangesTests') {
-            push(@include, [ $plugin => { changelog => $self->payload->{changelog} } ])
+            push(@include, [ $plugin => { changelog => ($self->payload->{changelog} || 'Changes') } ])
                 unless $plugin ~~ @include or $plugin ~~ @skip;
             next SKIP;
         }
@@ -75,7 +75,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 DESCRIPTION
 

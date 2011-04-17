@@ -3,7 +3,7 @@ abstract: 'test your dist with every testing plugin conceivable'
 author:
   - 'Mike Doherty <doherty@cpan.org>'
 build_requires:
-  File::Find: 0
+  File::Find: 1.19
   File::Temp: 0.22
   Test::More: 0.98
 configure_requires:
@@ -16,7 +16,6 @@ meta-spec:
   version: 1.4
 name: Dist-Zilla-PluginBundle-TestingMania
 requires:
-  Dist::Zilla::Plugin::CheckChangesTests: 1.100900
   Dist::Zilla::Plugin::CompileTests: 1.110930
   Dist::Zilla::Plugin::ConsistentVersionTest: 0.02
   Dist::Zilla::Plugin::CriticTests: 1.102280
@@ -30,17 +29,19 @@ requires:
   Dist::Zilla::Plugin::PodCoverageTests: 4.200004
   Dist::Zilla::Plugin::PodSyntaxTests: 4.200004
   Dist::Zilla::Plugin::PortabilityTests: 1.101420
-  Dist::Zilla::Plugin::ProgCriticTests: 1.102520
   Dist::Zilla::Plugin::SynopsisTests: 1.101420
-  Dist::Zilla::Plugin::Test::CPAN::Changes: 0
+  Dist::Zilla::Plugin::Test::CPAN::Changes: 0.003
+  Dist::Zilla::Plugin::Test::CPAN::Meta::JSON: 0
+  Dist::Zilla::Plugin::Test::Pod::LinkCheck: 1.000
   Dist::Zilla::Plugin::UnusedVarsTests: 1.100860
   Dist::Zilla::Role::PluginBundle::Easy: 4.200004
-  Moose: 1.25
+  Moose: 2.0000
   Pod::Coverage::TrustPod: 0.100000
   Test::CPAN::Meta: 0.18
   Test::Perl::Critic: 1.02
-  perl: 5.0100
+  perl: 5.010001
 resources:
   bugtracker: http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
+  homepage: http://p3rl.org/Dist::Zilla::PluginBundle::TestingMania
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: 0.007
+version: 0.008

@@ -1,5 +1,9 @@
 Changelog for Dist::Zilla::PluginBundle::TestingMania
 
+0.010     2011-04-20
+ * Forgotten hash key renamed [rstauner]
+ * Added tests
+
 0.009     2011-04-19
  * Renamed options for clarity: add -> enable; skip -> disable
  * Don't require the absolute latest prerequisites

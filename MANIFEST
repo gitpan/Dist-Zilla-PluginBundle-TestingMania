@@ -7,7 +7,7 @@ Makefile.PL
 README
 lib/Dist/Zilla/PluginBundle/TestingMania.pm
 t/00-compile.t
-t/00-load.t
+t/01-test-manifest.t
 xt/author/critic.t
 xt/release/cpan-changes.t
 xt/release/dist-manifest.t

@@ -4,8 +4,12 @@ author:
   - 'Mike Doherty <doherty@cpan.org>'
 build_requires:
   File::Find: 0
+  File::Path: 0
   File::Temp: 0
-  Test::More: 0
+  Moose::Autobox: 0
+  Test::DZil: 0
+  Test::More: 0.88
+  autodie: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
@@ -44,4 +48,4 @@ resources:
   bugtracker: https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
   homepage: http://p3rl.org/Dist::Zilla::PluginBundle::TestingMania
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: 0.009
+version: 0.010

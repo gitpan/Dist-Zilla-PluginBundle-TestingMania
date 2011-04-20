@@ -3,7 +3,7 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.010001; # We use the smart match operator
-our $VERSION = '0.009'; # VERSION
+our $VERSION = '0.010'; # VERSION
 
 use Dist::Zilla::Plugin::Test::CPAN::Changes            qw();
 use Dist::Zilla::Plugin::CompileTests                   qw();
@@ -53,7 +53,7 @@ sub configure {
     );
     my @include = ();
 
-    my @disable = $self->payload->{skip}
+    my @disable = $self->payload->{disable}
         ? split(/, ?/, $self->payload->{disable})
         : ();
     foreach my $plugin (keys %plugins) {
@@ -94,7 +94,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 

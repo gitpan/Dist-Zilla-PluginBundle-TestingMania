@@ -3,7 +3,7 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.010001; # We use the smart match operator
-our $VERSION = '0.010'; # VERSION
+our $VERSION = '0.011'; # VERSION
 
 use Dist::Zilla::Plugin::Test::CPAN::Changes            qw();
 use Dist::Zilla::Plugin::CompileTests                   qw();
@@ -37,7 +37,7 @@ sub configure {
         'Test::Pod::LinkCheck'  => 1,
         CompileTests            => 1,
         ConsistentVersionTest   => 0, # finnicky and annoying
-        CriticTests             => 1,
+        CriticTests             => $self->config_slice('critic_config'),
         DistManifestTests       => 1,
         EOLTests                => 1,
         HasVersionTests         => 1,
@@ -82,7 +82,6 @@ __PACKAGE__->meta->make_immutable();
 
 no Moose;
 
-
 __END__
 =pod
 
@@ -94,7 +93,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 SYNOPSIS
 
@@ -134,7 +133,11 @@ is not enabled by default; see L</"Enabling Tests">.
 =item *
 
 L<Dist::Zilla::Plugin::CriticTests>, which checks your code against best
-practices. See L<Perl::Critic> for details.
+practices. See L<Perl::Critic> for details. You can set a perlcritic config
+file:
+
+    [@TestingMania]
+    critic_config = perlcriticrc
 
 =item *
 
@@ -238,10 +241,10 @@ To enable a testing plugin, give a comma-separated list in F<dist.ini>:
     [@TestingMania]
     enable = ConsistentVersionTest
 
-=for Pod::Coverage configure
-
 =for test_synopsis 1;
 __END__
+
+=for Pod::Coverage configure
 
 =head1 AVAILABILITY
 

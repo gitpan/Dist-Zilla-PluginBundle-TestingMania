@@ -11,9 +11,9 @@ build_requires:
   Test::More: 0.88
   autodie: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110930'
+generated_by: 'Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110930'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -48,4 +48,4 @@ resources:
   bugtracker: https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
   homepage: http://p3rl.org/Dist::Zilla::PluginBundle::TestingMania
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: 0.010
+version: 0.011

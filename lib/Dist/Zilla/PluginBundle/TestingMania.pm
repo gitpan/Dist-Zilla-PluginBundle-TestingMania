@@ -3,24 +3,24 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.010001; # We use the smart match operator
-our $VERSION = '0.011'; # VERSION
+our $VERSION = '0.012'; # VERSION
 
 use Dist::Zilla::Plugin::Test::CPAN::Changes            qw();
 use Dist::Zilla::Plugin::CompileTests                   qw();
-use Dist::Zilla::Plugin::ConsistentVersionTest          qw();
 use Dist::Zilla::Plugin::CriticTests 1.102280           qw();
 use Dist::Zilla::Plugin::DistManifestTests              qw();
 use Dist::Zilla::Plugin::EOLTests 0.02                  qw(); # Also checks for trailing whitespace
-use Dist::Zilla::Plugin::HasVersionTests                qw();
 use Dist::Zilla::Plugin::KwaliteeTests                  qw();
 use Dist::Zilla::Plugin::MetaTests                      qw();
 use Dist::Zilla::Plugin::MinimumVersionTests            qw();
+use Dist::Zilla::Plugin::MojibakeTests                  qw();
 use Dist::Zilla::Plugin::NoTabsTests                    qw();
 use Dist::Zilla::Plugin::PodCoverageTests               qw();
 use Dist::Zilla::Plugin::PodSyntaxTests                 qw();
 use Dist::Zilla::Plugin::PortabilityTests               qw();
 use Dist::Zilla::Plugin::SynopsisTests                  qw();
 use Dist::Zilla::Plugin::UnusedVarsTests                qw();
+use Dist::Zilla::Plugin::Test::Version 0.001002         qw(); # New name
 use Dist::Zilla::Plugin::Test::Pod::LinkCheck           qw();
 use Dist::Zilla::Plugin::Test::CPAN::Meta::JSON 0.003   qw(); # Prunes itself when META.json isn't present
 
@@ -35,15 +35,15 @@ sub configure {
         'Test::CPAN::Changes'   => $self->config_slice('changelog'),
         'Test::CPAN::Meta::JSON'=> 1, # prunes itself if META.json isn't there
         'Test::Pod::LinkCheck'  => 1,
+        'Test::Version'         => 1,
         CompileTests            => 1,
-        ConsistentVersionTest   => 0, # finnicky and annoying
         CriticTests             => $self->config_slice('critic_config'),
         DistManifestTests       => 1,
         EOLTests                => 1,
-        HasVersionTests         => 1,
         KwaliteeTests           => 1,
         MetaTests               => 1, # should only be loaded if MetaYAML is loaded, or the file exists in the dist
         MinimumVersionTests     => 1,
+        MojibakeTests           => 1,
         NoTabsTests             => 1,
         PodCoverageTests        => 1,
         PodSyntaxTests          => 1,
@@ -93,7 +93,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 
@@ -111,10 +111,6 @@ Simply add the following near the end of F<dist.ini>:
 
     [@TestingMania]
 
-It includes the most recent version (as of release time) of the following
-plugins, in their default configuration. Note that not all the plugins
-are actually I<used> by default.
-
 =head2 Testing plugins
 
 =over 4
@@ -123,12 +119,6 @@ are actually I<used> by default.
 
 L<Dist::Zilla::Plugin::CompileTests>, which performs tests to syntax check your
 dist.
-
-=item *
-
-L<Dist::Zilla::Plugin::ConsistentVersionTest>, which tests that all modules in
-the dist have the same version. See L<Test::ConsistentVersion> for details. This
-is not enabled by default; see L</"Enabling Tests">.
 
 =item *
 
@@ -151,8 +141,9 @@ used (and also checks for trailing whitespace). See L<Test::EOL> for details.
 
 =item *
 
-L<Dist::Zilla::Plugin::HasVersionTests>, which tests that your dist has version
-numbers. See L<Test::HasVersion> for what that means.
+L<Dist::Zilla::Plugin::Test::Version>, which tests that your dist has
+version numbers, and that they are valid. See L<Test::Version> for exactly
+what that means.
 
 =item *
 
@@ -177,6 +168,11 @@ means.
 L<Dist::Zilla::Plugin::MinimumVersionTests>, which tests for the minimum
 required version of perl. See L<Test::MinimumVersion> for details, including
 limitations.
+
+=item *
+
+L<Dist::Zilla::Plugin::MojibakeTests>, which tests for the correct
+source/documentation character encoding.
 
 =item *
 

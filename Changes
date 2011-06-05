@@ -1,5 +1,9 @@
 Changelog for Dist::Zilla::PluginBundle::TestingMania
 
+0.012     2011-06-05
+ * Add a Test::Version plugin by xenoterrocide; remove superseded plugins
+ * Add a Test::Mojibake plugin by creaktive
+
 0.011     2011-05-09
  * Allow setting a perlcritic config file
 

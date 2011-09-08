@@ -3,7 +3,7 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.010001; # We use the smart match operator
-our $VERSION = 'v0.13'; # VERSION
+our $VERSION = '0.14'; # VERSION
 
 use Dist::Zilla::Plugin::Test::CPAN::Changes    0.005       qw(); # test failures
 use Dist::Zilla::Plugin::Test::Compile          1.112400    qw(); # bugfixes & test suite (& new name in 1.112390)
@@ -96,7 +96,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version v0.13
+version 0.14
 
 =head1 SYNOPSIS
 
@@ -253,7 +253,7 @@ __END__
 
 =head1 AVAILABILITY
 
-The project homepage is L<http://p3rl.org/Dist::Zilla::PluginBundle::TestingMania>.
+The project homepage is L<http://metacpan.org/release/Dist-Zilla-PluginBundle-TestingMania/>.
 
 The latest version of this module is available from the Comprehensive Perl
 Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN

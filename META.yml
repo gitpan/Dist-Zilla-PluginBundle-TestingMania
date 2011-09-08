@@ -55,6 +55,6 @@ requires:
   warnings: 0
 resources:
   bugtracker: https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
-  homepage: http://p3rl.org/Dist::Zilla::PluginBundle::TestingMania
+  homepage: http://metacpan.org/release/Dist-Zilla-PluginBundle-TestingMania/
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: v0.13
+version: 0.14

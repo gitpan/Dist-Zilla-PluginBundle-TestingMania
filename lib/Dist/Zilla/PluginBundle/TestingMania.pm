@@ -3,30 +3,31 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.010001; # We use the smart match operator
-our $VERSION = '0.012'; # VERSION
+our $VERSION = 'v0.13'; # VERSION
 
-use Dist::Zilla::Plugin::Test::CPAN::Changes            qw();
-use Dist::Zilla::Plugin::CompileTests                   qw();
-use Dist::Zilla::Plugin::CriticTests 1.102280           qw();
-use Dist::Zilla::Plugin::DistManifestTests              qw();
-use Dist::Zilla::Plugin::EOLTests 0.02                  qw(); # Also checks for trailing whitespace
-use Dist::Zilla::Plugin::KwaliteeTests                  qw();
-use Dist::Zilla::Plugin::MetaTests                      qw();
-use Dist::Zilla::Plugin::MinimumVersionTests            qw();
-use Dist::Zilla::Plugin::MojibakeTests                  qw();
-use Dist::Zilla::Plugin::NoTabsTests                    qw();
-use Dist::Zilla::Plugin::PodCoverageTests               qw();
-use Dist::Zilla::Plugin::PodSyntaxTests                 qw();
-use Dist::Zilla::Plugin::PortabilityTests               qw();
-use Dist::Zilla::Plugin::SynopsisTests                  qw();
-use Dist::Zilla::Plugin::UnusedVarsTests                qw();
-use Dist::Zilla::Plugin::Test::Version 0.001002         qw(); # New name
-use Dist::Zilla::Plugin::Test::Pod::LinkCheck           qw();
-use Dist::Zilla::Plugin::Test::CPAN::Meta::JSON 0.003   qw(); # Prunes itself when META.json isn't present
-
+use Dist::Zilla::Plugin::Test::CPAN::Changes    0.005       qw(); # test failures
+use Dist::Zilla::Plugin::Test::Compile          1.112400    qw(); # bugfixes & test suite (& new name in 1.112390)
+use Dist::Zilla::Plugin::Test::Perl::Critic     2.112410    qw(); # new name (& bugfixes in 1.111450)
+use Dist::Zilla::Plugin::Test::DistManifest     2.0.1       qw();
+use Dist::Zilla::Plugin::EOLTests               0.02        qw(); # Also checks for trailing whitespace
+use Dist::Zilla::Plugin::Test::Kwalitee         2.020000    qw(); # bunch o' fixes
+use Dist::Zilla::Plugin::MetaTests                          qw(); # core
+use Dist::Zilla::Plugin::Test::MinimumVersion   2.0.1       qw();
+use Dist::Zilla::Plugin::MojibakeTests          0.2         qw(); # test suite
+use Dist::Zilla::Plugin::NoTabsTests            0.01        qw();
+use Dist::Zilla::Plugin::PodCoverageTests                   qw(); # core
+use Dist::Zilla::Plugin::PodSyntaxTests                     qw(); # core
+use Dist::Zilla::Plugin::Test::Portability      2.0.1       qw();
+use Dist::Zilla::Plugin::Test::Synopsis         2.0.1       qw();
+use Dist::Zilla::Plugin::Test::UnusedVars       2.0.1       qw();
+use Dist::Zilla::Plugin::Test::Version          0.001002    qw(); # New name
+use Dist::Zilla::Plugin::Test::Pod::LinkCheck   1.001       qw(); # packaging
+use Dist::Zilla::Plugin::Test::CPAN::Meta::JSON 0.003       qw(); # Prunes itself when META.json isn't present
 
 use Moose;
+use namespace::autoclean;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
+
 
 sub configure {
     my $self = shift;
@@ -36,20 +37,20 @@ sub configure {
         'Test::CPAN::Meta::JSON'=> 1, # prunes itself if META.json isn't there
         'Test::Pod::LinkCheck'  => 1,
         'Test::Version'         => 1,
-        CompileTests            => 1,
-        CriticTests             => $self->config_slice('critic_config'),
-        DistManifestTests       => 1,
+        'Test::Compile'         => 1,
+        'Test::Perl::Critic'    => $self->config_slice('critic_config'),
+        'Test::DistManifest'    => 1,
         EOLTests                => 1,
-        KwaliteeTests           => 1,
+        'Test::Kwalitee'        => 1,
         MetaTests               => 1, # should only be loaded if MetaYAML is loaded, or the file exists in the dist
-        MinimumVersionTests     => 1,
+        'Test::MinimumVersion'  => 1,
         MojibakeTests           => 1,
         NoTabsTests             => 1,
         PodCoverageTests        => 1,
         PodSyntaxTests          => 1,
-        PortabilityTests        => 1,
-        SynopsisTests           => 1,
-        UnusedVarsTests         => 1,
+        'Test::Portability'     => 1,
+        'Test::Synopsis'        => 1,
+        'Test::UnusedVars'      => 1,
     );
     my @include = ();
 
@@ -82,6 +83,8 @@ __PACKAGE__->meta->make_immutable();
 
 no Moose;
 
+1;
+
 __END__
 =pod
 
@@ -93,7 +96,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.012
+version v0.13
 
 =head1 SYNOPSIS
 
@@ -117,21 +120,22 @@ Simply add the following near the end of F<dist.ini>:
 
 =item *
 
-L<Dist::Zilla::Plugin::CompileTests>, which performs tests to syntax check your
+L<Dist::Zilla::Plugin::Test::Compile>, which performs tests to syntax check your
 dist.
 
 =item *
 
-L<Dist::Zilla::Plugin::CriticTests>, which checks your code against best
-practices. See L<Perl::Critic> for details. You can set a perlcritic config
-file:
+L<Dist::Zilla::Plugin::Test::Perl::Critic>, which checks your code against best
+practices. See L<Test::Perl::Critic> and L<Perl::Critic> for details.
+
+You can set a perlcritic config file:
 
     [@TestingMania]
     critic_config = perlcriticrc
 
 =item *
 
-L<Dist::Zilla::Plugin::DistManifestTests>, which tests F<MANIFEST> for
+L<Dist::Zilla::Plugin::Test::DistManifest>, which tests F<MANIFEST> for
 correctness. See L<Test::DistManifest> for details.
 
 =item *
@@ -147,7 +151,7 @@ what that means.
 
 =item *
 
-L<Dist::Zilla::Plugin::KwaliteeTests>, which performs some basic kwalitee checks.
+L<Dist::Zilla::Plugin::Test::Kwalitee>, which performs some basic kwalitee checks.
 I<Kwalitee> is an automatically-measurable guage of how good your software is.
 It bears only a B<superficial> resemblance to the human-measurable guage of
 actual quality. See L<Test::Kwalitee> for a description of the tests.
@@ -165,7 +169,7 @@ means.
 
 =item *
 
-L<Dist::Zilla::Plugin::MinimumVersionTests>, which tests for the minimum
+L<Dist::Zilla::Plugin::Test::MinimumVersion>, which tests for the minimum
 required version of perl. See L<Test::MinimumVersion> for details, including
 limitations.
 
@@ -193,19 +197,24 @@ well-formed. See L<Test::Pod> and L<perlpod> for details.
 
 =item *
 
-L<Dist::Zilla::Plugin::PortabilityTests>, which performs some basic tests to
+L<Dist::Zilla::Plugin::Test::Portability>, which performs some basic tests to
 ensure portability of file names. See L<Test::Portability::Files> for what
 that means.
 
 =item *
 
-L<Dist::Zilla::Plugin::SynopsisTests>, which does syntax checking on the code
+L<Dist::Zilla::Plugin::Test::Synopsis>, which does syntax checking on the code
 from your SYNOPSIS section. See L<Test::Synopsis> for details and limitations.
 
 =item *
 
-L<Dist::Zilla::Plugin::UnusedVarsTests>, which checks your dist for unused
+L<Dist::Zilla::Plugin::Test::UnusedVars>, which checks your dist for unused
 variables. See L<Test::Vars> for details.
+
+=item *
+
+L<Dist::Zilla::Plugin::Test::Pod::LinkCheck>, which checks the links in your POD.
+See L<Test::Pod::LinkCheck> for details.
 
 =item *
 
@@ -224,18 +233,18 @@ Set C<changelog> in F<dist.ini> if you don't use F<Changes>:
 To exclude a testing plugin, give a comma-separated list in F<dist.ini>:
 
     [@TestingMania]
-    disable = EOLTests,NoTabsTests
+    disable = Test::DistManifest,Test::Kwalitee
 
 =head2 Enabling Tests
 
-This pluginbundle may have depend on some testing plugins that aren't
+This pluginbundle may have some testing plugins that aren't
 enabled by default. This option allows you to turn them on. Attempting to add
 plugins which are not listed above will have I<no effect>.
 
 To enable a testing plugin, give a comma-separated list in F<dist.ini>:
 
     [@TestingMania]
-    enable = ConsistentVersionTest
+    enable = Test::Compile
 
 =for test_synopsis 1;
 __END__

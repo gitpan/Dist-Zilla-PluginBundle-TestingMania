@@ -3,7 +3,7 @@ NAME
     testing plugin conceivable
 
 VERSION
-    version 0.012
+    version v0.13
 
 SYNOPSIS
     In dist.ini:
@@ -20,17 +20,19 @@ DESCRIPTION
         [@TestingMania]
 
   Testing plugins
-    *   Dist::Zilla::Plugin::CompileTests, which performs tests to syntax
+    *   Dist::Zilla::Plugin::Test::Compile, which performs tests to syntax
         check your dist.
 
-    *   Dist::Zilla::Plugin::CriticTests, which checks your code against
-        best practices. See Perl::Critic for details. You can set a
-        perlcritic config file:
+    *   Dist::Zilla::Plugin::Test::Perl::Critic, which checks your code
+        against best practices. See Test::Perl::Critic and Perl::Critic for
+        details.
+
+        You can set a perlcritic config file:
 
             [@TestingMania]
             critic_config = perlcriticrc
 
-    *   Dist::Zilla::Plugin::DistManifestTests, which tests MANIFEST for
+    *   Dist::Zilla::Plugin::Test::DistManifest, which tests MANIFEST for
         correctness. See Test::DistManifest for details.
 
     *   Dist::Zilla::Plugin::EOLTests, which ensures the correct line
@@ -41,7 +43,7 @@ DESCRIPTION
         version numbers, and that they are valid. See Test::Version for
         exactly what that means.
 
-    *   Dist::Zilla::Plugin::KwaliteeTests, which performs some basic
+    *   Dist::Zilla::Plugin::Test::Kwalitee, which performs some basic
         kwalitee checks. *Kwalitee* is an automatically-measurable guage of
         how good your software is. It bears only a superficial resemblance
         to the human-measurable guage of actual quality. See Test::Kwalitee
@@ -54,7 +56,7 @@ DESCRIPTION
         extra tests on META.json, if it exists. See Test::CPAN::Meta::JSON
         for what that means.
 
-    *   Dist::Zilla::Plugin::MinimumVersionTests, which tests for the
+    *   Dist::Zilla::Plugin::Test::MinimumVersion, which tests for the
         minimum required version of perl. See Test::MinimumVersion for
         details, including limitations.
 
@@ -72,16 +74,19 @@ DESCRIPTION
     *   Dist::Zilla::Plugin::PodSyntaxTests, which checks that your Pod is
         well-formed. See Test::Pod and perlpod for details.
 
-    *   Dist::Zilla::Plugin::PortabilityTests, which performs some basic
+    *   Dist::Zilla::Plugin::Test::Portability, which performs some basic
         tests to ensure portability of file names. See
         Test::Portability::Files for what that means.
 
-    *   Dist::Zilla::Plugin::SynopsisTests, which does syntax checking on
+    *   Dist::Zilla::Plugin::Test::Synopsis, which does syntax checking on
         the code from your SYNOPSIS section. See Test::Synopsis for details
         and limitations.
 
-    *   Dist::Zilla::Plugin::UnusedVarsTests, which checks your dist for
+    *   Dist::Zilla::Plugin::Test::UnusedVars, which checks your dist for
         unused variables. See Test::Vars for details.
+
+    *   Dist::Zilla::Plugin::Test::Pod::LinkCheck, which checks the links in
+        your POD. See Test::Pod::LinkCheck for details.
 
     *   Dist::Zilla::Plugin::Test::CPAN::Changes, which checks your
         changelog for conformance with CPAN::Changes::Spec. See
@@ -96,17 +101,17 @@ DESCRIPTION
     To exclude a testing plugin, give a comma-separated list in dist.ini:
 
         [@TestingMania]
-        disable = EOLTests,NoTabsTests
+        disable = Test::DistManifest,Test::Kwalitee
 
   Enabling Tests
-    This pluginbundle may have depend on some testing plugins that aren't
-    enabled by default. This option allows you to turn them on. Attempting
-    to add plugins which are not listed above will have *no effect*.
+    This pluginbundle may have some testing plugins that aren't enabled by
+    default. This option allows you to turn them on. Attempting to add
+    plugins which are not listed above will have *no effect*.
 
     To enable a testing plugin, give a comma-separated list in dist.ini:
 
         [@TestingMania]
-        enable = ConsistentVersionTest
+        enable = Test::Compile
 
 AVAILABILITY
     The project homepage is

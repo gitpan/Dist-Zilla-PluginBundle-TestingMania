@@ -4,7 +4,7 @@
       "Mike Doherty <doherty@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300000, CPAN::Meta::Converter version 2.112150",
+   "generated_by" : "Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.112621",
    "license" : [
       "perl_5"
    ],
@@ -32,7 +32,6 @@
       },
       "runtime" : {
          "requires" : {
-            "Dist::Zilla::Plugin::EOLTests" : "0.02",
             "Dist::Zilla::Plugin::MetaTests" : 0,
             "Dist::Zilla::Plugin::MojibakeTests" : "0.2",
             "Dist::Zilla::Plugin::NoTabsTests" : "0.01",
@@ -42,6 +41,7 @@
             "Dist::Zilla::Plugin::Test::CPAN::Meta::JSON" : "0.003",
             "Dist::Zilla::Plugin::Test::Compile" : "1.112400",
             "Dist::Zilla::Plugin::Test::DistManifest" : "v2.0.1",
+            "Dist::Zilla::Plugin::Test::EOL" : 0,
             "Dist::Zilla::Plugin::Test::Kwalitee" : "2.020000",
             "Dist::Zilla::Plugin::Test::MinimumVersion" : "v2.0.1",
             "Dist::Zilla::Plugin::Test::Perl::Critic" : "2.112410",
@@ -86,6 +86,6 @@
          "web" : "https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania"
       }
    },
-   "version" : "0.14"
+   "version" : "0.15"
 }
 

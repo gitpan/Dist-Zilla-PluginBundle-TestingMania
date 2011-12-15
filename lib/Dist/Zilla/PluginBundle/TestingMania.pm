@@ -3,26 +3,8 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.010001; # We use the smart match operator
-our $VERSION = '0.14'; # VERSION
+our $VERSION = '0.15'; # VERSION
 
-use Dist::Zilla::Plugin::Test::CPAN::Changes    0.005       qw(); # test failures
-use Dist::Zilla::Plugin::Test::Compile          1.112400    qw(); # bugfixes & test suite (& new name in 1.112390)
-use Dist::Zilla::Plugin::Test::Perl::Critic     2.112410    qw(); # new name (& bugfixes in 1.111450)
-use Dist::Zilla::Plugin::Test::DistManifest     2.0.1       qw();
-use Dist::Zilla::Plugin::EOLTests               0.02        qw(); # Also checks for trailing whitespace
-use Dist::Zilla::Plugin::Test::Kwalitee         2.020000    qw(); # bunch o' fixes
-use Dist::Zilla::Plugin::MetaTests                          qw(); # core
-use Dist::Zilla::Plugin::Test::MinimumVersion   2.0.1       qw();
-use Dist::Zilla::Plugin::MojibakeTests          0.2         qw(); # test suite
-use Dist::Zilla::Plugin::NoTabsTests            0.01        qw();
-use Dist::Zilla::Plugin::PodCoverageTests                   qw(); # core
-use Dist::Zilla::Plugin::PodSyntaxTests                     qw(); # core
-use Dist::Zilla::Plugin::Test::Portability      2.0.1       qw();
-use Dist::Zilla::Plugin::Test::Synopsis         2.0.1       qw();
-use Dist::Zilla::Plugin::Test::UnusedVars       2.0.1       qw();
-use Dist::Zilla::Plugin::Test::Version          0.001002    qw(); # New name
-use Dist::Zilla::Plugin::Test::Pod::LinkCheck   1.001       qw(); # packaging
-use Dist::Zilla::Plugin::Test::CPAN::Meta::JSON 0.003       qw(); # Prunes itself when META.json isn't present
 
 use Moose;
 use namespace::autoclean;
@@ -40,7 +22,7 @@ sub configure {
         'Test::Compile'         => 1,
         'Test::Perl::Critic'    => $self->config_slice('critic_config'),
         'Test::DistManifest'    => 1,
-        EOLTests                => 1,
+        'Test::EOL'             => 1,
         'Test::Kwalitee'        => 1,
         MetaTests               => 1, # should only be loaded if MetaYAML is loaded, or the file exists in the dist
         'Test::MinimumVersion'  => 1,
@@ -96,7 +78,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 
@@ -140,7 +122,7 @@ correctness. See L<Test::DistManifest> for details.
 
 =item *
 
-L<Dist::Zilla::Plugin::EOLTests>, which ensures the correct line endings are
+L<Dist::Zilla::Plugin::Test::EOL>, which ensures the correct line endings are
 used (and also checks for trailing whitespace). See L<Test::EOL> for details.
 
 =item *

@@ -6,6 +6,7 @@ META.json
 META.yml
 Makefile.PL
 README
+README.mkdn
 lib/Dist/Zilla/PluginBundle/TestingMania.pm
 t/00-compile.t
 t/01-test-manifest.t

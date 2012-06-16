@@ -3,13 +3,29 @@ package Dist::Zilla::PluginBundle::TestingMania;
 use strict;
 use warnings;
 use 5.010001; # We use the smart match operator
-our $VERSION = '0.15'; # VERSION
+our $VERSION = '0.16'; # VERSION
 
 
 use Moose;
 use namespace::autoclean;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
+
+has enable => (
+    is => 'ro',
+    isa => 'ArrayRef[Str]',
+    lazy => 1,
+    default => sub { $_[0]->payload->{enable} || [] },
+);
+
+has disable => (
+    is => 'ro',
+    isa => 'ArrayRef[Str]',
+    lazy => 1,
+    default => sub { $_[0]->payload->{disable} || [] },
+);
+
+sub mvp_multivalue_args { qw(enable disable) }
 
 sub configure {
     my $self = shift;
@@ -36,9 +52,7 @@ sub configure {
     );
     my @include = ();
 
-    my @disable = $self->payload->{disable}
-        ? split(/, ?/, $self->payload->{disable})
-        : ();
+    my @disable = map { (split /,\s?/, $_) } @{ $self->disable };
     foreach my $plugin (keys %plugins) {
         next if (                   # Skip...
             $plugin ~~ @disable or  # plugins they asked to skip
@@ -50,9 +64,7 @@ sub configure {
             : $plugin);
     }
 
-    my @enable = $self->payload->{enable}
-        ? split(/, ?/, $self->payload->{enable})
-        : ();
+    my @enable = map { (split /,\s?/, $_) } @{ $self->enable };
     foreach my $plugin (@enable) {
         next unless $plugin ~~ %plugins; # Skip the plugin unless it is in the list of actual testing plugins
         push(@include, $plugin) unless ($plugin ~~ @include or $plugin ~~ @disable);
@@ -78,7 +90,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.15
+version 0.16
 
 =head1 SYNOPSIS
 
@@ -212,10 +224,11 @@ Set C<changelog> in F<dist.ini> if you don't use F<Changes>:
 
 =head2 Disabling Tests
 
-To exclude a testing plugin, give a comma-separated list in F<dist.ini>:
+To exclude a testing plugin, specify them with C<disable> in F<dist.ini>
 
     [@TestingMania]
-    disable = Test::DistManifest,Test::Kwalitee
+    disable = Test::DistManifest
+    disable = Test::Kwalitee
 
 =head2 Enabling Tests
 
@@ -223,7 +236,7 @@ This pluginbundle may have some testing plugins that aren't
 enabled by default. This option allows you to turn them on. Attempting to add
 plugins which are not listed above will have I<no effect>.
 
-To enable a testing plugin, give a comma-separated list in F<dist.ini>:
+To enable a testing plugin, specify them in F<dist.ini>:
 
     [@TestingMania]
     enable = Test::Compile
@@ -231,7 +244,7 @@ To enable a testing plugin, give a comma-separated list in F<dist.ini>:
 =for test_synopsis 1;
 __END__
 
-=for Pod::Coverage configure
+=for Pod::Coverage configure mvp_multivalue_args
 
 =head1 AVAILABILITY
 
@@ -239,12 +252,7 @@ The project homepage is L<http://metacpan.org/release/Dist-Zilla-PluginBundle-Te
 
 The latest version of this module is available from the Comprehensive Perl
 Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
-site near you, or see L<http://search.cpan.org/dist/Dist-Zilla-PluginBundle-TestingMania/>.
-
-The development version lives at L<http://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania>
-and may be cloned from L<git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git>.
-Instead of sending patches, please fork this project using the standard
-git and github infrastructure.
+site near you, or see L<https://metacpan.org/module/Dist::Zilla::PluginBundle::TestingMania/>.
 
 =head1 SOURCE
 
@@ -253,10 +261,8 @@ and may be cloned from L<git://github.com/doherty/Dist-Zilla-PluginBundle-Testin
 
 =head1 BUGS AND LIMITATIONS
 
-No bugs have been reported.
-
-Please report any bugs or feature requests through the web interface at
-L<https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues>.
+You can make new bug reports, and view existing ones, through the
+web interface at L<https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues>.
 
 =head1 AUTHOR
 

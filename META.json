@@ -4,7 +4,7 @@
       "Mike Doherty <doherty@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300018, CPAN::Meta::Converter version 2.120630",
+   "generated_by" : "Dist::Zilla version 4.300014, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -15,7 +15,9 @@
    "name" : "Dist-Zilla-PluginBundle-TestingMania",
    "no_index" : {
       "directory" : [
-         "corpus"
+         "corpus",
+         "inc",
+         "examples"
       ]
    },
    "prereqs" : {
@@ -26,7 +28,6 @@
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.30",
             "Module::Build" : "0.3601"
          }
       },
@@ -87,6 +88,6 @@
          "web" : "https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania"
       }
    },
-   "version" : "0.17"
+   "version" : "0.18"
 }
 

@@ -2,10 +2,9 @@ package Dist::Zilla::PluginBundle::TestingMania;
 # ABSTRACT: test your dist with every testing plugin conceivable
 use strict;
 use warnings;
-use 5.010001; # We use the smart match operator
-our $VERSION = '0.18'; # VERSION
+our $VERSION = '0.19'; # VERSION
 
-
+use List::MoreUtils qw( any );
 use Moose;
 use namespace::autoclean;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
@@ -41,7 +40,7 @@ sub configure {
         'Test::EOL'             => 1,
         'Test::Kwalitee'        => 1,
         MetaTests               => 1, # should only be loaded if MetaYAML is loaded, or the file exists in the dist
-        'Test::MinimumVersion'  => 1,
+        'Test::MinimumVersion'  => $self->config_slice('max_target_perl'),
         MojibakeTests           => 1,
         NoTabsTests             => 1,
         PodCoverageTests        => 1,
@@ -54,10 +53,10 @@ sub configure {
 
     my @disable = map { (split /,\s?/, $_) } @{ $self->disable };
     foreach my $plugin (keys %plugins) {
-        next if (                   # Skip...
-            $plugin ~~ @disable or  # plugins they asked to skip
-            $plugin ~~ @include or  # plugins we already included
-            !$plugins{$plugin}      # plugins in the list, but which we don't want to add
+        next if (                              # Skip...
+            any { $_ eq $plugin } @disable or  # plugins they asked to skip
+            any { $_ eq $plugin } @include or  # plugins we already included
+            !$plugins{$plugin}          # plugins in the list, but which we don't want to add
         );
         push(@include, ref $plugins{$plugin}
             ? [ $plugin => $plugins{$plugin} ]
@@ -66,8 +65,8 @@ sub configure {
 
     my @enable = map { (split /,\s?/, $_) } @{ $self->enable };
     foreach my $plugin (@enable) {
-        next unless $plugin ~~ %plugins; # Skip the plugin unless it is in the list of actual testing plugins
-        push(@include, $plugin) unless ($plugin ~~ @include or $plugin ~~ @disable);
+        next unless any { $_ eq $plugin } %plugins; # Skip the plugin unless it is in the list of actual testing plugins
+        push(@include, $plugin) unless ( any { $_ eq $plugin } @include or any { $_ eq $plugin } @disable);
     }
 
     $self->add_plugins(@include);
@@ -80,6 +79,7 @@ no Moose;
 1;
 
 __END__
+
 =pod
 
 =encoding utf-8
@@ -90,7 +90,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.18
+version 0.19
 
 =head1 SYNOPSIS
 
@@ -168,8 +168,10 @@ means.
 =item *
 
 L<Dist::Zilla::Plugin::Test::MinimumVersion>, which tests for the minimum
-required version of perl. See L<Test::MinimumVersion> for details, including
-limitations.
+required version of perl. Give the highest version of perl you intend to
+require as C<max_target_perl>. The generated test will fail if you accidentally
+used features from a version of perl newer than that. See
+L<Test::MinimumVersion> for details and limitations.
 
 =item *
 
@@ -280,4 +282,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

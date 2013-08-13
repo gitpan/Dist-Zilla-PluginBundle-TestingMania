@@ -2,7 +2,7 @@ package Dist::Zilla::PluginBundle::TestingMania;
 # ABSTRACT: test your dist with every testing plugin conceivable
 use strict;
 use warnings;
-our $VERSION = '0.19'; # VERSION
+our $VERSION = '0.20'; # VERSION
 
 use List::MoreUtils qw( any );
 use Moose;
@@ -90,7 +90,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.19
+version 0.20
 
 =head1 SYNOPSIS
 

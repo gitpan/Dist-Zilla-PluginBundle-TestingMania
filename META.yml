@@ -3,17 +3,18 @@ abstract: 'test your dist with every testing plugin conceivable'
 author:
   - 'Mike Doherty <doherty@cpan.org>'
 build_requires:
-  Capture::Tiny: 0
+  File::Spec: 0
+  IO::Handle: 0
+  IPC::Open3: 0
   Module::Build: 0.3601
   Moose::Autobox: 0
   Test::DZil: 0
   Test::More: 0.88
   autodie: 0
-  blib: 0
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.131560'
+generated_by: 'Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.132140'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -32,7 +33,7 @@ requires:
   Dist::Zilla::Plugin::PodSyntaxTests: 0
   Dist::Zilla::Plugin::Test::CPAN::Changes: 0.005
   Dist::Zilla::Plugin::Test::CPAN::Meta::JSON: 0.003
-  Dist::Zilla::Plugin::Test::Compile: 1.112400
+  Dist::Zilla::Plugin::Test::Compile: 2.033
   Dist::Zilla::Plugin::Test::DistManifest: 2.000001
   Dist::Zilla::Plugin::Test::EOL: 0
   Dist::Zilla::Plugin::Test::Kwalitee: 2.020000
@@ -59,4 +60,4 @@ resources:
   bugtracker: https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
   homepage: http://metacpan.org/release/Dist-Zilla-PluginBundle-TestingMania/
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: 0.20
+version: 0.21

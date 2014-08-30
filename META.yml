@@ -6,16 +6,17 @@ build_requires:
   File::Spec: '0'
   IO::Handle: '0'
   IPC::Open3: '0'
-  Module::Build: '0.3601'
+  Module::Build: '0.28'
   Moose::Autobox: '0'
+  Path::Tiny: '0'
   Test::DZil: '0'
   Test::More: '0.88'
   autodie: '0'
   perl: '5.006'
 configure_requires:
-  Module::Build: '0.3601'
+  Module::Build: '0.28'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.015, CPAN::Meta::Converter version 2.140640'
+generated_by: 'Dist::Zilla version 5.020, CPAN::Meta::Converter version 2.142060'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -61,4 +62,4 @@ resources:
   bugtracker: https://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania/issues
   homepage: http://metacpan.org/release/Dist-Zilla-PluginBundle-TestingMania/
   repository: git://github.com/doherty/Dist-Zilla-PluginBundle-TestingMania.git
-version: '0.22'
+version: '0.23'

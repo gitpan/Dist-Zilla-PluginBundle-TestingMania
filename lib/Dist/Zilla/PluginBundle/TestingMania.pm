@@ -2,7 +2,7 @@ package Dist::Zilla::PluginBundle::TestingMania;
 # ABSTRACT: test your dist with every testing plugin conceivable
 use strict;
 use warnings;
-our $VERSION = '0.22'; # VERSION
+our $VERSION = '0.23'; # VERSION
 
 use List::MoreUtils qw( any );
 use Moose;
@@ -49,7 +49,10 @@ sub configure {
         'Test::Synopsis'        => 1,
         'Test::UnusedVars'      => 1,
     );
-    my %synonyms = ( 'NoTabsTests' => 'Test::NoTabs' );
+    my %synonyms = (
+        'NoTabsTests' => 'Test::NoTabs',
+        'EOLTests' => 'Test::EOL',
+    );
     my @include  = ();
 
     my @disable =
@@ -97,7 +100,7 @@ Dist::Zilla::PluginBundle::TestingMania - test your dist with every testing plug
 
 =head1 VERSION
 
-version 0.22
+version 0.23
 
 =head1 SYNOPSIS
 

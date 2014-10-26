@@ -1,5 +1,8 @@
 Changelog for Dist::Zilla::PluginBundle::TestingMania
 
+0.24      2014-10-25
+  - Test::EOL's test file changed names [rjeschmi]
+
 0.23      2014-08-29
   - Added another back-compat synonym (Test::EOL)
   - More robust manifest tests
